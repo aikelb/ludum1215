@@ -16,10 +16,14 @@ public class Ship : MonoBehaviour {
 		
 		transform.rotation = Quaternion.AngleAxis(-towardsTarget.x * 20, Vector3.forward) * Quaternion.AngleAxis(towardsTarget.y * 20, Vector3.left);
 		transform.position += towardsTarget * movementSpeed * Time.deltaTime * towardsTarget.magnitude; 
-		
+
 		if (Input.GetKey(KeyCode.Space))
 			for (int i = 0; i < gun.Length; i++)
 				gun[i].Shoot(crosshair);
 	}
+
+    void HealUp() {
+        if (currentHealth != 3) currentHealth++;
+    }
 	
 }
