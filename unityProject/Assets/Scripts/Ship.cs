@@ -7,7 +7,6 @@ public class Ship : MonoBehaviour {
 	public float movementSpeed;
 	public Gun[] gun;
 	Vector3 towardsTarget;
-	
 	public int currentHealth = 3;
 	
 	void Update () {
