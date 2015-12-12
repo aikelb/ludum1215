@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour {
 	
 	void OnTriggerEnter (Collider other) {
 		if (other.CompareTag("Obstacle")) {
-			other.SendMessage("Hit");
+			other.SendMessage("GotShot");
 		}
 	}
 	

@@ -2,29 +2,36 @@
 using System.Collections;
 
 public class obstacleActions : MonoBehaviour {
+    
+    
+    public delegate void _GotShot (Vector3 position);
+    public static event _GotShot OnGotShot;
+    public delegate void _Destroyed (Vector3 position, int score);
+    public static event _Destroyed OnDestroyed;
+    
     public GameObject player;
     public float randomPositionMultiplier;
     public float movementSpeed = 25f;
-
-	// Use this for initialization
-	/*void Start () { 
-        endPosition = (Random.insideUnitSphere * randomPositionMultiplier) + player.transform.position;
-        endPosition.z = player.transform.position.z;
-        endPosition.x = this.transform.position.x;
-        endPosition.y = this.transform.position.y;
-    }*/
-	
-	// Update is called once per frame
+    public int hp = 5;
+    public int score = 100;
+    
 	void Update () {
         transform.position += Vector3.back * movementSpeed * Time.deltaTime;
     }
 
     private void didHitPlayer() {
-
+        
     }
 
-    private void gotShot()
-    {
-
+    private void GotShot() {
+        hp--;
+        if (hp > 0) {
+           if (OnGotShot != null)
+                OnGotShot(transform.position); 
+        } else {
+            if (OnDestroyed != null)
+                OnDestroyed(transform.position, score);
+            Destroy(gameObject);
+        }        
     }
 }
