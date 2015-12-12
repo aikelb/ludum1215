@@ -6,7 +6,9 @@ public class Ship : MonoBehaviour {
 	public Transform crosshair;
 	public float movementSpeed;
 	public Gun[] gun;
-	Vector3 towardsTarget; 
+	Vector3 towardsTarget;
+	
+	public int currentHealth = 3;
 	
 	void Update () {
 		towardsTarget = crosshair.position - transform.position + Vector3.down;

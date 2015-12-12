@@ -15,10 +15,19 @@ public class Bullet : MonoBehaviour {
 		Vector3 initPosition = transform.position;
 		while (elapsedTime < animationTime) {
 			elapsedTime += Time.deltaTime;
-			transform.position = Vector3.Lerp(initPosition, targetPosition, elapsedTime/animationTime);
+			transform.position = Vector3.Lerp(initPosition, targetPosition, c.Evaluate(elapsedTime/animationTime));
 			yield return 0;
 		}
 		transform.position = targetPosition;
+		elapsedTime = 0;
+		transform.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
+		initPosition = targetPosition;
+		targetPosition = targetPosition + Vector3.forward * 10;
+		while (elapsedTime < animationTime) {
+			elapsedTime += Time.deltaTime;
+			transform.position = Vector3.Lerp(initPosition, targetPosition, elapsedTime/animationTime);
+			yield return 0;
+		}
 		Destroy(gameObject);
 	}
 	
