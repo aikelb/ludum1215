@@ -6,11 +6,6 @@ public class ScoreManager : MonoBehaviour {
     public GameObject scoreTextObject;
     public int currentScore = 0;
 
-    void OnEnable() {
-        obstacleActions.OnDestroyed += obstacleDestroyed;
-        Ship.OnHit += shipGotHit;
-    }
-
     private void shipGotHit(int currentHp, Vector3 position)
     {
         changeScore(-200);
@@ -32,13 +27,20 @@ public class ScoreManager : MonoBehaviour {
         updateScoreText();
     }
 
-    // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    void OnEnable () {
+        obstacleActions.OnDestroyed += obstacleDestroyed;
+        Ship.OnHit += shipGotHit;
+        Ship.OnDestroyed += HandleOnShipDestroyed;
+    }
+    
+    void OnDisable () {
+        Ship.OnDestroyed -= HandleOnShipDestroyed;
+        obstacleActions.OnDestroyed -= obstacleDestroyed;
+        Ship.OnHit -= shipGotHit;
+    }
+    
+    void HandleOnShipDestroyed (Vector3 position) {
+        PlayerPrefs.SetFloat("Score", currentScore);
+    }
+    
 }
