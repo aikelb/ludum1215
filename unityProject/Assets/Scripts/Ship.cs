@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Ship : MonoBehaviour {
 
-	public delegate void _HealUp (int currentHp);
+	public delegate void _HealUp (int currentHp, Vector3 position);
 	public static event _HealUp OnHealUp;
 
 	public delegate void _Hit (Vector3 position, int currentHp);
@@ -41,7 +41,7 @@ public class Ship : MonoBehaviour {
         if (currentHealth < 3) {
 			currentHealth++;
 			if (OnHealUp != null)
-				OnHealUp(currentHealth);
+				OnHealUp(currentHealth, transform.position);
 		}
     }
 	

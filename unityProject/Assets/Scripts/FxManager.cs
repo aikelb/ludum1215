@@ -26,23 +26,30 @@ public class FxManager : MonoBehaviour {
 	}
 	
 	void HandleOnObstacleShoot (Vector3 position) {
-		
+		SetParticle(obstacleGotShot, position);
 	}
 	
 	void HandleOnObstacleDestroyed (Vector3 p, int score) {
-		
+		SetParticle(obstacleDestroyed, p);
 	}
 	
 	void HandleOnShipHit (Vector3 p, int hp) {
-		
+		SetParticle(shiphit, p);
 	}
 	
-	void HandleOnShipHeal (int hp) {
-		
+	void HandleOnShipHeal (int hp, Vector3 position) {
+		SetParticle(shiphit, position);
 	}
 	
 	void HandleOnShipDestroyed (Vector3 position) {
-		
+		SetParticle(shipdestroyed, position);
+	}
+	
+	void SetParticle (GameObject prefab, Vector3 p) {
+		if (prefab == null)
+			return;
+		GameObject go = GameObject.Instantiate(prefab, p, Quaternion.identity) as GameObject;
+		Destroy(go, 2);
 	}
 	
 }
