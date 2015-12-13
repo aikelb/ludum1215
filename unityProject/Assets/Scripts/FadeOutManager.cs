@@ -52,7 +52,9 @@ public class FadeOutManager : MonoBehaviour {
 	}
 	
 	void GoGameOver () {
-		DoFadeOut("death");
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        DoFadeOut("death");
 	}
 	
 }
