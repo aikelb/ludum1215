@@ -18,6 +18,11 @@ public class PowerUpManager : MonoBehaviour {
         obstacleActions.OnDestroyed += chanceToSpawnPowerUp;
     }
 
+    void OnDisable()
+    {
+        obstacleActions.OnDestroyed -= chanceToSpawnPowerUp;
+    }
+
     void chanceToSpawnPowerUp(Vector3 objectTransform, int score) {
         if (Random.value * 100 < spawnProbability) {
             spawnPowerUpAt(objectTransform);
