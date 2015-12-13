@@ -20,7 +20,7 @@ public class obstacleActions : MonoBehaviour {
     
     public GameObject player;
     public float randomPositionMultiplier;
-    public float movementSpeed = 25f;
+    public float movementSpeed = 250f;
     public int hp = 5;
     public int score = 100;
     
@@ -90,6 +90,11 @@ public class obstacleActions : MonoBehaviour {
             ChangeState(state.Boom);
         }
     }
-    
-    
+
+    public void increaseMovementSpeed(float increase) {
+        movementSpeed = movementSpeed * increase;
+    }
+
+
+
 }
