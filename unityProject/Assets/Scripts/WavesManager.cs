@@ -51,4 +51,9 @@ public class WavesManager : MonoBehaviour
         this.GetComponent<obstaclesSpawner>().spawnWave(obstacles);
         waveCounter++;
     }
+
+    public int getDifficultyLevel()
+    {
+        return difficultyLevel;
+    }
 }

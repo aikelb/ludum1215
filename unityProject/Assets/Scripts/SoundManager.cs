@@ -24,21 +24,33 @@ public class SoundManager : MonoBehaviour {
 	}
 	
 	void OnEnable () {
-		Gun.OnShoot += HandleOnShoot;	
+		Gun.OnShoot += HandleOnShoot;
+		obstacleActions.OnGotShot += HandleOnObstacleShoot;
+		obstacleActions.OnDestroyed += HandleOnObstacleDestroyed;
 	}
 	
 	void OnDisable () {
 		Gun.OnShoot -= HandleOnShoot;
+		obstacleActions.OnGotShot -= HandleOnObstacleShoot;
+		obstacleActions.OnDestroyed -= HandleOnObstacleDestroyed;
 	}
 	
 	void HandleOnShoot () {
 		Play(shoot);
 	}
 	
+	void HandleOnObstacleShoot (Vector3 p) {
+		Play(hit);
+	}
+	
+	void HandleOnObstacleDestroyed (Vector3 p, int score) {
+		
+	}
+	
 	void Play (AudioClip a) {
-		if (a != null)
+		if (a == null)
 			return;
-		if (Time.time - stamps[priority[a]] < 0.25f) {
+		if (Time.time - stamps[priority[a]] > 0.05f) {
 			stamps[priority[a]] = Time.time;
 			aSource.PlayOneShot(a);
 		}
