@@ -62,7 +62,7 @@ public class SoundManager : MonoBehaviour {
 		Play(shipHit);
 	}
 	
-	void HandleOnShipHeal (int hp) {
+	void HandleOnShipHeal (int hp, Vector3 p) {
 		Play(shipHealed);
 	}
 	
