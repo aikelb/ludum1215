@@ -33,7 +33,7 @@ public class FxManager : MonoBehaviour {
 		SetParticle(obstacleDestroyed, p);
 	}
 	
-	void HandleOnShipHit (Vector3 p, int hp) {
+	void HandleOnShipHit (int hp, Vector3 p) {
 		SetParticle(shiphit, p);
 	}
 	

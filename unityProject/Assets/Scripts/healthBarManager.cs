@@ -1,17 +1,27 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
-public class healthBarManager : MonoBehaviour {
-    public GameObject healthBarSprite;
-    public SpriteRenderer[] healthBarSprites = new SpriteRenderer[3];
+public class HealthBarManager : MonoBehaviour {
+    public GameObject healthBar;
 
 
-    void OnEnabled() {
+    void OnEnable() {
         Ship.OnHealUp += updateHealthBar;
+        Ship.OnHit += updateHealthBar;
+        Ship.OnDestroyed += updateHealthDeath;
+    }
+
+    private void updateHealthDeath(Vector3 position){
+        updateHealthBar(0, position);
     }
 
     void updateHealthBar(int currentHealth, Vector3 shipPosition) {
+        healthBar.GetComponent<Image>().fillAmount = getFillAmountForHealth(currentHealth);
+    }
 
+    private float getFillAmountForHealth(int currentHealth) {
+        return currentHealth/3f;
     }
 
 	// Use this for initialization
@@ -24,16 +34,4 @@ public class healthBarManager : MonoBehaviour {
 	
 	}
 
-    public void changeHealthSprite(int currentHealth)
-    {
-        if (currentHealth < healthBarSprites.Length && currentHealth >= 0)
-        {
-            switchSprite(healthBarSprites[currentHealth]);
-        }
-    }
-
-    private void switchSprite(SpriteRenderer healthSprite)
-    {
-        //healthBarSpriteRenderer. = healthSprite;
-    }
 }
