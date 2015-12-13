@@ -72,10 +72,6 @@ public class obstacleActions : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    private void didHitPlayer() {
-        
-    }
-
     private void GotShot() {
         hp--;
         if (hp > 0) {
@@ -87,4 +83,13 @@ public class obstacleActions : MonoBehaviour {
             ChangeState(state.Boom);
         }        
     }
+    
+    void OnTriggerEnter (Collider other) {
+        if (other.CompareTag("Player")) {
+            other.SendMessage("Hit");
+            ChangeState(state.Boom);
+        }
+    }
+    
+    
 }

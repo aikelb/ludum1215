@@ -5,12 +5,11 @@ public class Crosshair : MonoBehaviour {
 	
 	public float movementSpeed = 2f;
 	Vector3 direction;
-
-    public Camera c;
-
-    void Start() {
+	
+	void Awake () {
         Cursor.lockState = CursorLockMode.Locked;
     }
+
 	
 	void Update () {
 		direction = Vector3.zero;
@@ -42,10 +41,6 @@ public class Crosshair : MonoBehaviour {
 			Mathf.Clamp(transform.position.y ,-3f ,7f),
 			10
 			);
-	}
-	
-	void LateUpdate () {
-		
 	}
 	
 	void MoveTowards (Vector3 direction) {

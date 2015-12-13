@@ -4,9 +4,12 @@ using System.Collections.Generic;
 
 public class SoundManager : MonoBehaviour {
 
-	public AudioClip hit;
-	public AudioClip explosion;
-	public AudioClip shoot;
+	public AudioClip obstacleHit;
+	public AudioClip obstacleDestroyed;
+	public AudioClip weaponShoot;
+	public AudioClip shipHit;
+	public AudioClip shipDestroyed;
+	public AudioClip shipHealed;
 	
 	Dictionary<AudioClip, int> priority;
 
@@ -16,35 +19,55 @@ public class SoundManager : MonoBehaviour {
 	
 	void Awake () {
 		aSource = GetComponent<AudioSource>();
-		stamps = new float[] {0,0,0};
+		stamps = new float[] {0,0,0,0,0};
 		priority = new Dictionary<AudioClip, int>();
-		priority.Add(hit, 0);
-		priority.Add(explosion, 1);
-		priority.Add(shoot, 2);
+		priority.Add(obstacleHit, 0);
+		priority.Add(obstacleDestroyed, 1);
+		priority.Add(weaponShoot, 2);
+		priority.Add(shipHit, 3);
+		priority.Add(shipDestroyed, 4);
 	}
 	
 	void OnEnable () {
 		Gun.OnShoot += HandleOnShoot;
 		obstacleActions.OnGotShot += HandleOnObstacleShoot;
 		obstacleActions.OnDestroyed += HandleOnObstacleDestroyed;
+		Ship.OnHit += HandleOnShipHit;
+		Ship.OnHealUp += HandleOnShipHeal;
+		Ship.OnDestroyed += HandleOnShipDestroyed;
 	}
 	
 	void OnDisable () {
 		Gun.OnShoot -= HandleOnShoot;
 		obstacleActions.OnGotShot -= HandleOnObstacleShoot;
 		obstacleActions.OnDestroyed -= HandleOnObstacleDestroyed;
+		Ship.OnHit -= HandleOnShipHit;
+		Ship.OnHealUp -= HandleOnShipHeal;
+		Ship.OnDestroyed -= HandleOnShipDestroyed;
 	}
 	
 	void HandleOnShoot () {
-		Play(shoot);
+		Play(weaponShoot);
 	}
 	
 	void HandleOnObstacleShoot (Vector3 p) {
-		Play(hit);
+		Play(obstacleHit);
 	}
 	
 	void HandleOnObstacleDestroyed (Vector3 p, int score) {
-		
+		Play(obstacleDestroyed);
+	}
+	
+	void HandleOnShipHit (Vector3 p, int hp) {
+		Play(shipHit);
+	}
+	
+	void HandleOnShipHeal (int hp) {
+		Play(shipHealed);
+	}
+	
+	void HandleOnShipDestroyed (Vector3 position) {
+		Play(shipDestroyed);
 	}
 	
 	void Play (AudioClip a) {
