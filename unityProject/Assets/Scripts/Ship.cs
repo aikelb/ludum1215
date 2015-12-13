@@ -43,8 +43,8 @@ public class Ship : MonoBehaviour {
 
     void HealUp() {
         if (currentHealth < 3) {
+			shipParts[3-currentHealth].SetActive(true);
 			currentHealth++;
-			shipParts[currentHealth].SetActive(true);
 			if (OnHealUp != null)
 				OnHealUp(currentHealth, transform.position);
 		}
@@ -58,7 +58,7 @@ public class Ship : MonoBehaviour {
 			GetComponent<Collider>().enabled = false;
 			enabled = false;
 		} else {
-			shipParts[currentHealth].SetActive(false);
+			shipParts[3-currentHealth].SetActive(false);
 			if (OnHit != null)
 				OnHit(currentHealth, transform.position);
 		}
