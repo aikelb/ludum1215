@@ -6,7 +6,7 @@ public class Ship : MonoBehaviour {
 	public delegate void _HealUp (int currentHp, Vector3 position);
 	public static event _HealUp OnHealUp;
 
-	public delegate void _Hit (Vector3 position, int currentHp);
+	public delegate void _Hit (int currentHp, Vector3 position);
 	public static event _Hit OnHit;
 	public delegate void _Destroyed (Vector3 position);
 	public static event _Destroyed OnDestroyed;
@@ -53,9 +53,10 @@ public class Ship : MonoBehaviour {
 			if (OnDestroyed != null)
 				OnDestroyed(transform.position);
 			GetComponent<Collider>().enabled = false;
+			enabled = false;
 		} else {
 			if (OnHit != null)
-				OnHit(transform.position, currentHealth);
+				OnHit(currentHealth, transform.position);
 		}
 	}
 	

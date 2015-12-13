@@ -58,7 +58,7 @@ public class SoundManager : MonoBehaviour {
 		Play(obstacleDestroyed);
 	}
 	
-	void HandleOnShipHit (Vector3 p, int hp) {
+	void HandleOnShipHit (int hp, Vector3 p) {
 		Play(shipHit);
 	}
 	

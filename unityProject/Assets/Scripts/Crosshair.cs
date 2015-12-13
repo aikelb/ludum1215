@@ -38,7 +38,7 @@ public class Crosshair : MonoBehaviour {
 
         transform.position = new Vector3(
 			Mathf.Clamp(transform.position.x , -12f , 12f),
-			Mathf.Clamp(transform.position.y ,-3f ,7f),
+			Mathf.Clamp(transform.position.y ,-5f ,7f),
 			10
 			);
 	}
