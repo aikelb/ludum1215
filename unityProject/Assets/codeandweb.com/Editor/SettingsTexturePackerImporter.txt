@@ -3,5 +3,8 @@ importPivots: 1
 tpsheetFileNames:
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.tpsheet
 - Assets/Textures/nombres.tpsheet
+- Assets/Textures/creditos.tpsheet
 textureFileNames:
+- Assets/Textures/creditos.png
 normalmapFileNames:
+- 
