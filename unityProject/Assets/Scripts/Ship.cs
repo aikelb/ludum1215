@@ -15,7 +15,9 @@ public class Ship : MonoBehaviour {
 	public float movementSpeed;
 	public Gun[] gun;
 	Vector3 towardsTarget;
-	public int currentHealth = 3;
+	public int currentHealth = 1;
+	
+	public GameObject [] shipParts;
 	
 	void Update () {
 		towardsTarget = crosshair.position - transform.position + Vector3.down;
@@ -42,6 +44,7 @@ public class Ship : MonoBehaviour {
     void HealUp() {
         if (currentHealth < 3) {
 			currentHealth++;
+			shipParts[currentHealth].SetActive(true);
 			if (OnHealUp != null)
 				OnHealUp(currentHealth, transform.position);
 		}
@@ -55,6 +58,7 @@ public class Ship : MonoBehaviour {
 			GetComponent<Collider>().enabled = false;
 			enabled = false;
 		} else {
+			shipParts[currentHealth].SetActive(false);
 			if (OnHit != null)
 				OnHit(currentHealth, transform.position);
 		}
