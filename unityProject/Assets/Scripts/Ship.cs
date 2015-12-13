@@ -20,8 +20,10 @@ public class Ship : MonoBehaviour {
 	void Update () {
 		towardsTarget = crosshair.position - transform.position + Vector3.down;
 		towardsTarget.z = 0;
-		
-		transform.rotation = Quaternion.AngleAxis(-towardsTarget.x * 20, Vector3.forward) * Quaternion.AngleAxis(towardsTarget.y * 20, Vector3.left);
+
+        towardsTarget.x = Mathf.Clamp(towardsTarget.x, -0.8f, 0.8f);
+        towardsTarget.y = Mathf.Clamp(towardsTarget.y, -1f, 1f);
+        transform.rotation = Quaternion.AngleAxis(-towardsTarget.x * 20, Vector3.forward) * Quaternion.AngleAxis(towardsTarget.y * 20, Vector3.left);
 		transform.position += towardsTarget.normalized * movementSpeed * Time.deltaTime * towardsTarget.magnitude; 
 
 		if (Input.GetButton("Fire1") || Input.GetKey(KeyCode.Space))

@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class healPowerUpAction : MonoBehaviour {
-    public float movementSpeed = 25f;
+    public float movementSpeed = 10f;
 
     // Use this for initialization
     void Start () {
