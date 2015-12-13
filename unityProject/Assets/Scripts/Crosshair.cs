@@ -6,7 +6,11 @@ public class Crosshair : MonoBehaviour {
 	public float movementSpeed = 2f;
 	Vector3 direction;
 
-    public Camera c;
+    Camera c;
+	
+	void Awake () {
+		c = Camera.main;
+	}
 	
 	void Update () {
         Debug.Log(Input.mousePosition);
