@@ -6,6 +6,11 @@ public class Ship : MonoBehaviour {
 	public delegate void _HealUp (int currentHp);
 	public static event _HealUp OnHealUp;
 
+	public delegate void _Hit (Vector3 position, int currentHp);
+	public static event _Hit OnHit;
+	public delegate void _Destroyed (Vector3 position);
+	public static event _Destroyed OnDestroyed;
+
 	public Transform crosshair;
 	public float movementSpeed;
 	public Gun[] gun;
@@ -39,5 +44,14 @@ public class Ship : MonoBehaviour {
 				OnHealUp(currentHealth);
 		}
     }
+	
+	void Hit () {
+		currentHealth--;
+		if (currentHealth < 1) {
+			if (OnDestroyed != null)
+				OnDestroyed(transform.position);
+			GetComponent<Collider>().enabled = false;
+		}
+	}
 	
 }

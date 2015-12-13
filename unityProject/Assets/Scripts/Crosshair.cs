@@ -28,10 +28,6 @@ public class Crosshair : MonoBehaviour {
 			);
 	}
 	
-	void LateUpdate () {
-		
-	}
-	
 	void MoveTowards (Vector3 direction) {
 		transform.position += direction * Time.deltaTime * movementSpeed;
 	}
