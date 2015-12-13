@@ -17,7 +17,7 @@ public class FadeOutManager : MonoBehaviour {
 			StartCoroutine(Fade(1,0));
 	}
 	
-	void DoFadeOut (string scene) {
+	public void DoFadeOut (string scene) {
 		targetScene = scene;
 		StartCoroutine(Fade(0, 1));
 	}

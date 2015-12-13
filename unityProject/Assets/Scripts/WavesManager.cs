@@ -8,6 +8,8 @@ public class WavesManager : MonoBehaviour
     private int difficultyLevel;
     public float timeToIncreaseDifficulty = 50f;
     public float timeBetweenWaves = 2f;
+    public float reducingTimeBetweenWaves;
+    public float minTimeBetweenWaves;
 
     // Use this for initialization
     void Start(){
@@ -23,6 +25,10 @@ public class WavesManager : MonoBehaviour
     public IEnumerator increaseDifficultyLevel(){
         while (true){
             difficultyLevel++;
+            if(timeBetweenWaves > minTimeBetweenWaves)
+            {
+                timeBetweenWaves -= reducingTimeBetweenWaves;
+            }
             yield return new WaitForSeconds(timeToIncreaseDifficulty);
         }
     }

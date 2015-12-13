@@ -4,8 +4,8 @@ using System.Collections;
 public class obstaclesSpawner : MonoBehaviour {
     public float randomPositionMultiplier;
     public float avoidCollisionRadius = 5f;
-    public float currentEnemiesSpeed = 5f;
-    public float speedIncrementAfterWave = 1.05f;
+    public float currentEnemiesIncrease = 1f;
+    public float speedIncrementAfterWave = 5f;
 
 	// Use this for initialization
 	void Start () {      	        
@@ -30,11 +30,11 @@ public class obstaclesSpawner : MonoBehaviour {
             spawnNextObstacle(obstacle);
         }else{
             GameObject spawnedObtacle = Instantiate(obstacle, randomSpawnPosition, Quaternion.identity) as GameObject;
-            spawnedObtacle.GetComponent<obstacleActions>().movementSpeed = currentEnemiesSpeed;
+            spawnedObtacle.GetComponent<obstacleActions>().increaseMovementSpeed(currentEnemiesIncrease);
         }
     }
 
     private void increaseCurrentEnemiesSpeed(){
-        currentEnemiesSpeed = currentEnemiesSpeed * speedIncrementAfterWave;
+        currentEnemiesIncrease = currentEnemiesIncrease + (speedIncrementAfterWave / 100);
     }
 }

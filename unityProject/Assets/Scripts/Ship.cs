@@ -33,7 +33,7 @@ public class Ship : MonoBehaviour {
 	
 	void LateUpdate () {
 		transform.position = new Vector3(
-			Mathf.Clamp(transform.position.x ,-5f ,5f),
+			Mathf.Clamp(transform.position.x ,-8f ,8f),
 			Mathf.Clamp(transform.position.y ,-4f ,5f),
 			0
 			);

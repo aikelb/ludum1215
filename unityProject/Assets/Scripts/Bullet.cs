@@ -23,7 +23,8 @@ public class Bullet : MonoBehaviour {
 		elapsedTime = 0;
 		transform.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
 		initPosition = targetPosition;
-		targetPosition = targetPosition + Vector3.forward * 10;
+        animationTime = 0.70f;
+		targetPosition = targetPosition + Vector3.forward * 50;
 		while (elapsedTime < animationTime) {
 			elapsedTime += Time.deltaTime;
 			transform.position = Vector3.Lerp(initPosition, targetPosition, elapsedTime/animationTime);
