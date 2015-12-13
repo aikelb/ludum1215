@@ -53,6 +53,7 @@ public class Ship : MonoBehaviour {
 			if (OnDestroyed != null)
 				OnDestroyed(transform.position);
 			GetComponent<Collider>().enabled = false;
+			enabled = false;
 		} else {
 			if (OnHit != null)
 				OnHit(transform.position, currentHealth);
