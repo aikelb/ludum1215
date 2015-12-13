@@ -13,6 +13,7 @@ public class Bullet : MonoBehaviour {
 	
 	IEnumerator Go (Vector3 targetPosition) {
 		Vector3 initPosition = transform.position;
+		targetPosition += Random.insideUnitSphere;
 		while (elapsedTime < animationTime) {
 			elapsedTime += Time.deltaTime;
 			transform.position = Vector3.Lerp(initPosition, targetPosition, c.Evaluate(elapsedTime/animationTime));

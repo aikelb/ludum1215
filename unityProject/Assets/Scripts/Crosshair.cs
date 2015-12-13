@@ -22,9 +22,16 @@ public class Crosshair : MonoBehaviour {
 			direction += Vector3.down;
 
         transform.position = c.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20));
-
-		//direction = direction.normalized;
-		//MoveTowards(direction);
+		
+		transform.position = new Vector3(
+			Mathf.Clamp(transform.position.x , -5f , 5f),
+			Mathf.Clamp(transform.position.y ,-3f ,7f),
+			10
+			);
+	}
+	
+	void LateUpdate () {
+		
 	}
 	
 	void MoveTowards (Vector3 direction) {
