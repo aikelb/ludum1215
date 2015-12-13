@@ -86,7 +86,7 @@ public class obstacleActions : MonoBehaviour {
     
     void OnTriggerEnter (Collider other) {
         if (other.CompareTag("Player")) {
-            other.SendMessage("Hit");
+            other.SendMessageUpwards("Hit", SendMessageOptions.DontRequireReceiver);
             ChangeState(state.Boom);
         }
     }

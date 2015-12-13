@@ -16,7 +16,7 @@ public class healPowerUpAction : MonoBehaviour {
 
     void OnTriggerEnter(Collider other){
         if (other.CompareTag("Player")){
-            other.SendMessage("HealUp");
+            other.SendMessageUpwards("HealUp", SendMessageOptions.DontRequireReceiver);
             Destroy(gameObject);
         }
     }

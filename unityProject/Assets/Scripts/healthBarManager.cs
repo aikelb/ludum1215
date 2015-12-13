@@ -11,6 +11,12 @@ public class healthBarManager : MonoBehaviour {
         Ship.OnHit += updateHealthBar;
         Ship.OnDestroyed += updateHealthDeath;
     }
+    
+    void OnDisable() {
+        Ship.OnHealUp -= updateHealthBar;
+        Ship.OnHit -= updateHealthBar;
+        Ship.OnDestroyed -= updateHealthDeath;
+    }
 
     private void updateHealthDeath(Vector3 position){
         updateHealthBar(0, position);
