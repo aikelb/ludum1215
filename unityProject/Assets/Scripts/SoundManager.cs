@@ -19,13 +19,14 @@ public class SoundManager : MonoBehaviour {
 	
 	void Awake () {
 		aSource = GetComponent<AudioSource>();
-		stamps = new float[] {0,0,0,0,0};
+		stamps = new float[] {0,0,0,0,0,0};
 		priority = new Dictionary<AudioClip, int>();
 		priority.Add(obstacleHit, 0);
 		priority.Add(obstacleDestroyed, 1);
 		priority.Add(weaponShoot, 2);
 		priority.Add(shipHit, 3);
 		priority.Add(shipDestroyed, 4);
+		priority.Add(shipHealed, 5);
 	}
 	
 	void OnEnable () {

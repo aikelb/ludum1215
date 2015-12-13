@@ -38,7 +38,7 @@ public class FxManager : MonoBehaviour {
 	}
 	
 	void HandleOnShipHeal (int hp, Vector3 position) {
-		SetParticle(shiphit, position);
+		SetParticle(shipheal, position);
 	}
 	
 	void HandleOnShipDestroyed (Vector3 position) {
