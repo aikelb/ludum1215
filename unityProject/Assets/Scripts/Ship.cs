@@ -24,7 +24,7 @@ public class Ship : MonoBehaviour {
 		transform.rotation = Quaternion.AngleAxis(-towardsTarget.x * 20, Vector3.forward) * Quaternion.AngleAxis(towardsTarget.y * 20, Vector3.left);
 		transform.position += towardsTarget.normalized * movementSpeed * Time.deltaTime * towardsTarget.magnitude; 
 
-		if (Input.GetKey(KeyCode.Space))
+		if (Input.GetButton("Fire1") || Input.GetKey(KeyCode.Space))
 			for (int i = 0; i < gun.Length; i++)
 				gun[i].Shoot(crosshair);
 	}

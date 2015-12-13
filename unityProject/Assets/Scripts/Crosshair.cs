@@ -5,21 +5,23 @@ public class Crosshair : MonoBehaviour {
 	
 	public float movementSpeed = 2f;
 	Vector3 direction;
+
+    public Camera c;
 	
 	void Update () {
+        Debug.Log(Input.mousePosition);
 		direction = Vector3.zero;
 		
-		if (Input.GetKey(KeyCode.A))
+		if (Input.GetKey(KeyCode.A) || Input.GetAxis("Mouse X") < 0)
 			direction += Vector3.left;
-		if (Input.GetKey(KeyCode.D))
+		if (Input.GetKey(KeyCode.D) || Input.GetAxis("Mouse X") > 0)
 			direction += Vector3.right;
-		if (Input.GetKey(KeyCode.W))
+		if (Input.GetKey(KeyCode.W) || Input.GetAxis("Mouse Y") > 0)
 			direction += Vector3.up;
-		if (Input.GetKey(KeyCode.S))
+		if (Input.GetKey(KeyCode.S) || Input.GetAxis("Mouse Y") < 0)
 			direction += Vector3.down;
-			
-		direction = direction.normalized;
-		MoveTowards(direction);
+
+        transform.position = c.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20));
 		
 		transform.position = new Vector3(
 			Mathf.Clamp(transform.position.x , -5f , 5f),
