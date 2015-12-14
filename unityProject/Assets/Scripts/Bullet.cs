@@ -28,7 +28,7 @@ public class Bullet : MonoBehaviour {
 		while (elapsedTime < animationTime) {
 			elapsedTime += Time.deltaTime;
 			transform.position = Vector3.Lerp(initPosition, targetPosition, elapsedTime/animationTime);
-			yield return 0;
+			yield return new WaitForFixedUpdate();
 		}
 		Destroy(gameObject);
 	}

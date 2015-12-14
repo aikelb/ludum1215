@@ -11,7 +11,7 @@ public class CreditsManager : MonoBehaviour {
     }
 
     public void hideCredits() {
-        mainCanvas.alpha = 1;
+		mainCanvas.alpha = 1;
         creditsCanvas.alpha = 0;
     }
 }
